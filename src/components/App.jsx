@@ -8,9 +8,11 @@ import Header from './Header';
 
 const App = () => {
 
+  // Holds the book data from database //
   const [library, setLibrary] = useState([]);
+
+  // Will conditionally render features available to registered users //
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loginForm, setLoginForm] = useState(false)
 
   const logIn = useCallback(() => {
     setLoggedIn(true)
@@ -20,6 +22,9 @@ const App = () => {
     setLoggedIn(false)
   });
 
+  // Will conditionally render the login form //
+  const [loginForm, setLoginForm] = useState(false);
+
   const showLogin = useCallback(() => {
     setLoginForm(true)
   });
@@ -28,6 +33,18 @@ const App = () => {
     setLoginForm(false)
   });
 
+  // Will conditionally render the book form //
+  const [bookForm, setBookForm] = useState(false);
+
+  const showBook = useCallback(() => {
+    setBookForm(true)
+  });
+
+  const hideBook = useCallback(() => {
+    setBookForm(false)
+  });
+
+  // Holds the logic to request books from database //
   const refreshLibrary = useCallback( async () => {
     const books = [];
     await fetch('/library')
@@ -37,34 +54,45 @@ const App = () => {
     .catch(err => console.error(err));
   });
 
+  // Request books on initial render //
   useEffect( () => refreshLibrary(), []);
 
   return (
-      <div className="app">
-        <Header showLogin={showLogin}/>
-        <h2>Books</h2>
+    <div className="app">
+      <Header showLogin={showLogin}/>
+      <h2>Books</h2>
 
-        <div className="books">
-          {library.map(book =>
-            <BookCard
-              book={book}
-              refreshLibrary={refreshLibrary}
-              key={book._id}
-              loggedIn={loggedIn}
-            />
-          )}
-        </div>
-
-        {!loggedIn && loginForm && <LoginForm logIn={logIn} hideLogin={hideLogin}/>}
-
-        {loggedIn && 
-          <div>
-            <h2>New Book</h2>
-            <BookForm refreshLibrary={refreshLibrary} />
-            <LogOutButton logOut={logOut}/>
-          </div>
-        }
+      <div className="books">
+        {library.map(book =>
+          <BookCard
+            book={book}
+            refreshLibrary={refreshLibrary}
+            key={book._id}
+            loggedIn={loggedIn}
+          />
+        )}
       </div>
+
+      { // Show login form if not logged in, and requested //
+        !loggedIn && loginForm && 
+        <LoginForm 
+          logIn={logIn} 
+          hideLogin={hideLogin}
+        />
+      }
+
+      { // Show book form if logged in, and requested //
+        loggedIn && bookForm &&
+        <BookForm refreshLibrary={refreshLibrary} />
+      }
+      { // Show footer if logged in //
+        loggedIn && 
+        <div className="footer">
+          <LogOutButton logOut={logOut}/> 
+          <button onClick={showBook}>Add Book</button>
+        </div>
+      }
+    </div>
   );
 };
 
