@@ -26,14 +26,13 @@ const LoginForm = ({logIn}) => {
   }
 
   return (
-    <form
-      className='log-in'
-      onSubmit={handleSubmit}
-    >
-      <input type="text" name="user-name" />
-      <input type="password" name="password" id=""/>
-      <input type="submit" value="Login"/>
-    </form>
+    <div className="log-in">
+      <form onSubmit={handleSubmit} >
+        <input type="text" name="user-name" />
+        <input type="password" name="password" id=""/>
+        <input type="submit" value="Login"/>
+      </form>
+    </div>
   );
 
 };
