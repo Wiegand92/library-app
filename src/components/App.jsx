@@ -3,12 +3,14 @@ import React, {useEffect, useState, useCallback} from 'react';
 import BookForm from './BookForm';
 import BookCard from './BookCard';
 import LoginForm from './LoginForm';
-import LogOutButton from './LogOutButton'
+import LogOutButton from './LogOutButton';
+import Header from './Header';
 
 const App = () => {
 
   const [library, setLibrary] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loginForm, setLoginForm] = useState(false)
 
   const logIn = useCallback(() => {
     setLoggedIn(true)
@@ -16,7 +18,15 @@ const App = () => {
 
   const logOut = useCallback(() => {
     setLoggedIn(false)
-  })
+  });
+
+  const showLogin = useCallback(() => {
+    setLoginForm(true)
+  });
+
+  const hideLogin = useCallback(() => {
+    setLoginForm(false)
+  });
 
   const refreshLibrary = useCallback( async () => {
     const books = [];
@@ -31,7 +41,7 @@ const App = () => {
 
   return (
       <div className="app">
-        <h1>My Library</h1>
+        <Header showLogin={showLogin}/>
         <h2>Books</h2>
 
         <div className="books">
@@ -45,7 +55,7 @@ const App = () => {
           )}
         </div>
 
-        {!loggedIn && <LoginForm logIn={logIn}/>}
+        {!loggedIn && loginForm && <LoginForm logIn={logIn} hideLogin={hideLogin}/>}
 
         {loggedIn && 
           <div>

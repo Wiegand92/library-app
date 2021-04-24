@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginForm = ({logIn}) => {
+const LoginForm = ({logIn, hideLogin}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,15 +25,18 @@ const LoginForm = ({logIn}) => {
     .catch(err => console.error(err));
   }
 
+  const handleDivClick = e => {
+    if(e.target.className === 'log-in'){ hideLogin() }
+  }
+  
   return (
-    <form
-      className='log-in'
-      onSubmit={handleSubmit}
-    >
-      <input type="text" name="user-name" />
-      <input type="password" name="password" id=""/>
-      <input type="submit" value="Login"/>
-    </form>
+    <div className="log-in" onClick={handleDivClick}>
+      <form onSubmit={handleSubmit} >
+        <input type="text" name="user-name" />
+        <input type="password" name="password" id=""/>
+        <input type="submit" value="Login"/>
+      </form>
+    </div>
   );
 
 };

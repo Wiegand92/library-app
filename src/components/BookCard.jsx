@@ -31,10 +31,10 @@ const BookCard = ({book, refreshLibrary, loggedIn}) => {
     <div className="book-card">
       <h2>{book.title}</h2>
       <h3>{book.author}</h3>
-      <p>{book.pages}</p>
+      <p>Pages: {book.pages}</p>
       {loggedIn && <button
         onClick={handleDelete}
-      >X</button>}
+      >Delete Book</button>}
     </div>
   )
 };
