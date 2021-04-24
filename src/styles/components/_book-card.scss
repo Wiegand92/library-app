@@ -1,16 +1,28 @@
 .book-card{
-  @apply h-96 w-80 m-2 p-4 flex flex-col justify-around;
-  @apply bg-dark-gray mx-auto;
+
+  // Sizing //
+  @apply h-96 w-80 rounded-md ;
+
+  // Spacing //
+  @apply m-2 p-8 flex flex-col mx-auto text-center;
+
+  // Colors //
+  @apply bg-dark-gray text-tan;
 
   h2{
-    @apply text-2xl text-tan underline;
+    @apply text-4xl  underline;
   }
 
   h3{
-    @apply text-xl text-tan italic;
+    @apply text-2xl italic;
+  }
+
+  p{
+    @apply mt-20;
   }
 
   button{
-    @apply bg-red-500 w-10 m-auto mt-0 mb-0;
+    @apply transition-colors w-40 mt-4 rounded-sm bg-gray text-black mx-auto;
+    @apply hover:bg-red-700;
   }
 }
