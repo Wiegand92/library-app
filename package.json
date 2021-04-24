@@ -1,0 +1,49 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A simple weather app for TOP",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "nodemon server.js",
+    "start-dev": "cross-env NODE_ENV=development webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Deep_Thought",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.1",
+    "mini-css-extract-plugin": "^1.4.1",
+    "nodemon": "^2.0.7",
+    "postcss": "^8.2.10",
+    "postcss-loader": "^5.2.0",
+    "postcss-preset-env": "^6.7.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "source-map-loader": "^2.0.1",
+    "style-loader": "^2.0.0",
+    "tailwindcss": "^2.1.1",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

@@ -1,0 +1,25 @@
+.app{
+  @apply h-screen w-screen bg-tan;
+  overflow: auto;
+
+  h1{
+    @apply text-right text-6xl text-tan h-28 pt-6 pr-8 mb-3 bg-dark-gray;
+  }
+
+  p{
+    @apply text-center;
+  }
+
+  a{
+    @apply text-blue-800;
+  }
+
+  input {
+    @apply bg-gray text-black w-80 h-10 mt-5;
+  }
+
+  .books{
+    @apply grid grid-cols-4;
+  }
+  
+}

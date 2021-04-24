@@ -1,0 +1,25 @@
+@use './settings';
+
+html, body {
+  @apply p-0 m-0;
+}
+
+html {
+  // Makes 1rem === 10px //
+  font-size: 62.5%;
+  @apply h-screen w-screen;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  @apply h-full w-full;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}

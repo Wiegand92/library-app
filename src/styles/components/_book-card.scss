@@ -1,0 +1,16 @@
+.book-card{
+  @apply h-96 w-80 m-2 p-4 flex flex-col justify-around;
+  @apply bg-dark-gray mx-auto;
+
+  h2{
+    @apply text-2xl text-tan underline;
+  }
+
+  h3{
+    @apply text-xl text-tan italic;
+  }
+
+  button{
+    @apply bg-red-500 w-10 m-auto mt-0 mb-0;
+  }
+}
