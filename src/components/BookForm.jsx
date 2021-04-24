@@ -1,9 +1,9 @@
 import React from 'react';
 
-const BookForm = ({refreshLibrary}) => {
+const BookForm = ({refreshLibrary, hideBook}) => {
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Destructure book values from form //
     const { 
@@ -30,20 +30,24 @@ const BookForm = ({refreshLibrary}) => {
       body: JSON.stringify(newBook)
     })
     .then(() => refreshLibrary())
-    .catch(err => console.error(err))
+    .then(() => hideBook())
+    .catch(err => console.error(err));
+  }
 
-    console.log(author, title, pages, read)
-
+  const handleDivClick = e => {
+    if(e.target.className === 'book-form'){ hideBook() }
   }
 
   return (
-    <form className='book-form' onSubmit={handleSubmit}>
+    <div className="book-form" onClick={handleDivClick}>
+    <form onSubmit={handleSubmit}>
       <input type="text" name="title" id="title"/>
       <input type="text" name="author" id="author"/>
       <input type="number" name="pages" id="pages"/>
       <input type="checkbox" name="read" id="read"/>
       <input type="submit" value="Add Book"/>
     </form>
+    </div>
   )
 }
 

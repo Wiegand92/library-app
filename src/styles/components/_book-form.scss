@@ -1,11 +1,18 @@
 .book-form{
-  @apply flex flex-col;
-  // input[type=text]{
-  // }
-  // input[type=number]{
-  //   @apply ;
-  // }
-  // input[type=submit]{
-  //   @apply ;
-  // }
+  @apply fixed top-0 left-0 w-screen h-screen;
+  @apply flex place-items-center place-content-center;
+  @apply bg-dark-gray bg-opacity-50;
+
+  form {
+    @apply flex flex-col;
+    @apply bg-tan p-20;
+
+    input{
+      @apply rounded-sm shadow-inner;
+    }
+
+    input[type=submit]{
+      @apply shadow-none;
+    }
+  }
 }

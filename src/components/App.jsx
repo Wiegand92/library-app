@@ -59,8 +59,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header showLogin={showLogin}/>
-      <h2>Books</h2>
+      <Header showLogin={showLogin} logOut={logOut} loggedIn={loggedIn}/>
 
       <div className="books">
         {library.map(book =>
@@ -83,12 +82,12 @@ const App = () => {
 
       { // Show book form if logged in, and requested //
         loggedIn && bookForm &&
-        <BookForm refreshLibrary={refreshLibrary} />
+        <BookForm refreshLibrary={refreshLibrary} hideBook={hideBook}/>
       }
+
       { // Show footer if logged in //
         loggedIn && 
         <div className="footer">
-          <LogOutButton logOut={logOut}/> 
           <button onClick={showBook}>Add Book</button>
         </div>
       }
