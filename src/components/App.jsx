@@ -3,7 +3,6 @@ import React, {useEffect, useState, useCallback} from 'react';
 import BookForm from './BookForm';
 import BookCard from './BookCard';
 import LoginForm from './LoginForm';
-import LogOutButton from './LogOutButton';
 import Header from './Header';
 
 const App = () => {
