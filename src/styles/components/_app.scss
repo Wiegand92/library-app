@@ -1,26 +1,23 @@
 .app{
   @apply h-screen w-screen bg-tan;
-  @apply flex flex-col justify-between content-between;
+  @apply flex flex-col content-between;
 
   input {
     @apply bg-gray text-black w-80 h-10 mt-5;
   }
 
-  .books{
-    @apply grid grid-cols-4;
-    overflow: auto;
+  header{
+    flex-basis: 10%;
   }
 
-  .footer{
-    @apply h-28 w-screen pr-8 pl-8 pt-6 mb-0 bg-dark-gray flex justify-end;
-  
-    h1{
-      @apply text-6xl text-tan text-right;
-    }
-  
-    button{
-      @apply bg-tan text-black h-14 p-2 rounded-sm;
-    }
+  .books{
+    /* Base Grid */
+    @apply grid place-items-center grid-cols-1;
+    /* Responsive Grids */
+    @apply sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-basis: 100%;
   }
   
 }

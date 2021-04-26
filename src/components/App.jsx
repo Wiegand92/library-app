@@ -35,6 +35,12 @@ const App = () => {
   // Will conditionally render the book form //
   const [bookForm, setBookForm] = useState(false);
 
+  const [book, setBook] = useState({});
+
+  const passBook = useCallback((book) => {
+    setBook(book);
+  });
+
   const showBook = useCallback(() => {
     setBookForm(true)
   });
@@ -42,6 +48,8 @@ const App = () => {
   const hideBook = useCallback(() => {
     setBookForm(false)
   });
+
+  useEffect(() => { if(book._id) showBook() }, [book])
 
   // Holds the logic to request books from database //
   const refreshLibrary = useCallback( async () => {
@@ -67,6 +75,8 @@ const App = () => {
             refreshLibrary={refreshLibrary}
             key={book._id}
             loggedIn={loggedIn}
+            passBook={passBook}
+            showBook={showBook}
           />
         )}
       </div>
@@ -81,7 +91,12 @@ const App = () => {
 
       { // Show book form if logged in, and requested //
         loggedIn && bookForm &&
-        <BookForm refreshLibrary={refreshLibrary} hideBook={hideBook}/>
+        <BookForm 
+          refreshLibrary={refreshLibrary} 
+          hideBook={hideBook}
+          setBook={setBook}
+          book={!!book._id ? book : ''}
+        />
       }
 
       { // Show footer if logged in //

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookCard = ({book, refreshLibrary, loggedIn}) => {
+const BookCard = ({book, passBook, refreshLibrary, loggedIn}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -25,15 +25,22 @@ const BookCard = ({book, refreshLibrary, loggedIn}) => {
         window.alert('Something went wrong, are you logged in?')
       } })
     .catch(err => console.error(err));
-  }
+  };
+
+  const handleClick = e => {
+    if(loggedIn && e.target.className !== 'delete'){
+      passBook(book)
+    }
+  };
 
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={handleClick}>
       <h2>{book.title}</h2>
       <h3>{book.author}</h3>
       <p>Pages: {book.pages}</p>
       {loggedIn && <button
         onClick={handleDelete}
+        className='delete'
       >Delete Book</button>}
     </div>
   )

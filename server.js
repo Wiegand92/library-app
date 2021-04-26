@@ -81,11 +81,26 @@ app.post('/new-user', async (req, res) => {
 // Get Library //
 app.get('/library', async (req, res) => {
 
+  if(req.isAuthenticated()) console.log(req.user);
+
   await Library.find({})
   .then(data => res.send(data))
   .catch(err => console.error(err));
 
 })
+// Update book in Library //
+
+app.post('/library/:bookID', async (req, res) => {
+  if(!req.isAuthenticated()){
+    return res.status(403).send()
+  }
+  const {author, title, pages, read} = req.body;
+  const updates = {author, title, pages, read};
+
+  await Library.findByIdAndUpdate(req.params.bookID, updates)
+  .then(() => res.status(200).send())
+  .catch(err => console.error(err));
+});
 
 // Post book to library //
 app.post('/library', async (req, res) => {
@@ -109,6 +124,7 @@ app.post('/library', async (req, res) => {
     res.status(403).send()
   }
 });
+
 
 // Delete book from Library //
 app.delete('/library', async (req, res) => {
