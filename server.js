@@ -48,6 +48,7 @@ app.post('/authenticate', (req, res) => {
       console.error(err);
       res.status(400).send();
     } else {
+      console.log(req.user)
       res.status(200).send();
     }
   });
