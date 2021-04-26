@@ -9,19 +9,25 @@
   // Colors //
   @apply bg-dark-gray text-tan;
 
+  overflow-y: auto;
+
   h2{
+    flex-basis: 10%;
     @apply text-4xl  underline;
   }
 
   h3{
+    flex-basis: 10%;
     @apply text-2xl italic;
   }
 
   p{
-    @apply mt-20;
+    flex-basis: 100%;
+    @apply pt-7
   }
 
   button{
+    flex-basis: 10%;
     @apply transition-colors w-40 mt-4 rounded-sm bg-gray text-black mx-auto;
     @apply hover:bg-red-700;
   }

@@ -37,7 +37,10 @@ const BookCard = ({book, passBook, refreshLibrary, loggedIn}) => {
     <div className="book-card" onClick={handleClick}>
       <h2>{book.title}</h2>
       <h3>{book.author}</h3>
-      <p>Pages: {book.pages}</p>
+      <p>
+        Pages: {book.pages} <br/>
+        {book.read? 'You have read this book.': 'You have not read this book'}
+      </p>
       {loggedIn && <button
         onClick={handleDelete}
         className='delete'
