@@ -51,12 +51,7 @@ module.exports = {
         test: /\.s?css$/,
         use: [
           //If we're in dev-mode, use inline-styles, else extract to separate css file
-          devMode ? 'style-loader' : {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '/scripts/',
-            }
-          },
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           "sass-loader",
