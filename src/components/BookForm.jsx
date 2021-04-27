@@ -113,10 +113,14 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book}) => {
   return (
     <div className="book-form" onClick={handleDivClick}>
     <form onSubmit={handleSubmit}>
+      <label htmlFor="title">Title: </label>
       <input type="text" className={handleNull('title')} value={formTitle} onChange={e => handleChange(e, 'title')}/>
+      <label htmlFor="author">Author:</label>
       <input type="text" className={handleNull('author')} value={formAuthor} onChange={e => handleChange(e, 'author')}/>
+      <label htmlFor="pages">Pages:</label>
       <input type="number" min='0' className={handleNull('pages')} value={formPages} onChange={e => handleChange(e, 'pages')}/>
-      <input type="checkbox" checked={formRead} onChange={handleCheck}/>
+      <label htmlFor="">Read: </label>
+      <input type="checkbox" name='read' checked={formRead} onChange={handleCheck}/>
       <input type="submit" value={!!book ? "Update" : "Add Book"}/>
     </form>
     </div>

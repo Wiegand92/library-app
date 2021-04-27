@@ -7,11 +7,15 @@
     @apply flex flex-col;
     @apply bg-tan p-20;
 
+    label{
+      @apply mt-2;
+    }
+
     input{
       @apply rounded-sm shadow-inner;
     }
 
-    input[type=submit], input[type=checked]{
+    input[type=submit], input[type=checkbox]{
       @apply shadow-none;
     }
 
