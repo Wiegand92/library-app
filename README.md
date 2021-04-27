@@ -10,7 +10,7 @@ The login is
 
 Username: Alex Password
 
-Password: S3cur3P4ssw0rd!
+Password: Str0ngP4ssw0rd!
 
 ### **Make your own clone**
 
