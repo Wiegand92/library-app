@@ -8,11 +8,19 @@
     @apply bg-tan p-20;
 
     input{
-      @apply rounded-sm shadow-inner;
+      @apply rounded-sm m-0 shadow-inner;
+    }
+
+    label{
+      @apply mt-5 text-center;
     }
 
     input[type=submit]{
-      @apply shadow-none;
+      @apply shadow-none mt-5;
+    }
+
+    .error{
+      @apply border border-red-500;
     }
   }
 }

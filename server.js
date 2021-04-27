@@ -26,6 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+
 //Serve static files//
 app.use(express.static(__dirname + '/public'));
 
@@ -36,24 +37,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Authenticate User //
-app.post('/authenticate', (req, res) => {
-
-  const user = new User({
-    username: req.body.user.userName, 
-    password: req.body.user.password
-  });
-  
-  req.login(user, function(err){
-    if(err) {
-      console.error(err);
-      res.status(400).send();
-    } else {
-      console.log(req.user)
-      res.status(200).send();
-    }
-  });
-
-});
+app.post('/authenticate', 
+  passport.authenticate('local'),
+  function (req, res) {
+    res.status(200).send()
+  }
+);
 
 // Log Out User //
 app.get('/logout', (req, res) => {
@@ -63,9 +52,9 @@ app.get('/logout', (req, res) => {
 
 // Add User //
 app.post('/new-user', async (req, res) => {
-  const { user } = req.body;
+  const { username, password } = req.body;
 
-  User.register({username: user.userName}, user.password, function(err, user){
+  User.register({username}, password, function(err, user){
     if(err) {
       console.error(err);
       res.status(400).send()

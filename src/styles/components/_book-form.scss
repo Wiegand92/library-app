@@ -11,8 +11,12 @@
       @apply rounded-sm shadow-inner;
     }
 
-    input[type=submit]{
+    input[type=submit], input[type=checked]{
       @apply shadow-none;
+    }
+
+    .error{
+      @apply border-red-500 border outline-none;
     }
   }
 }
