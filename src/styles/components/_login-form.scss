@@ -8,7 +8,7 @@
     @apply bg-tan p-20;
 
     input{
-      @apply rounded-sm m-0 shadow-inner;
+      @apply rounded-md shadow-inner m-0 h-20 w-96 text-center;
     }
 
     label{
@@ -17,6 +17,7 @@
 
     input[type=submit]{
       @apply shadow-none mt-5;
+      @apply cursor-pointer transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
     }
 
     .error{

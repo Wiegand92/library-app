@@ -1,18 +1,26 @@
 .book-form{
   @apply fixed top-0 left-0 w-screen h-screen;
-  @apply flex place-items-center place-content-center;
+  @apply flex place-items-center place-content-center text-center;
   @apply bg-dark-gray bg-opacity-50;
 
   form {
     @apply flex flex-col;
-    @apply bg-tan p-20;
+    @apply bg-tan p-20 rounded-md;
 
     label{
-      @apply mt-2;
+      @apply mt-4;
     }
 
     input{
-      @apply rounded-sm shadow-inner;
+      @apply rounded-md shadow-inner h-20 w-96 text-center;
+    }
+
+    input[type=checkbox]{
+      @apply h-12 cursor-pointer;
+    }
+
+    input[type=submit]{
+      @apply cursor-pointer transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
     }
 
     input[type=submit], input[type=checkbox]{

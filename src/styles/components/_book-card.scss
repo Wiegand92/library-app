@@ -9,6 +9,9 @@
   // Colors //
   @apply bg-dark-gray text-tan;
 
+  @apply transform transition-transform cursor-pointer;
+  @apply hover:scale-110;
+
   overflow-y: auto;
 
   h2{

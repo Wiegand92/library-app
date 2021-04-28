@@ -119,7 +119,7 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book}) => {
       <input type="text" className={handleNull('author')} value={formAuthor} onChange={e => handleChange(e, 'author')}/>
       <label htmlFor="pages">Pages:</label>
       <input type="number" min='0' className={handleNull('pages')} value={formPages} onChange={e => handleChange(e, 'pages')}/>
-      <label htmlFor="">Read: </label>
+      <label htmlFor="">Have You Read This Book?</label>
       <input type="checkbox" name='read' checked={formRead} onChange={handleCheck}/>
       <input type="submit" value={!!book ? "Update" : "Add Book"}/>
     </form>
