@@ -2,12 +2,7 @@ module.exports = {
   purge: {
     enabled: true,
     content: [
-      './src/styles/base/_base.scss',
-      './src/styles/components/_app.scss',
-      './src/styles/components/_book-card.scss',
-      './src/styles/components/_book-form.scss',
-      './src/styles/components/_header.scss',
-      './src/styles/components/_login-form.scss'
+      './src/styles/**'
     ]
   },
   darkMode: false, // or 'media' or 'class'

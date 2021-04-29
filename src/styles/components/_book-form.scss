@@ -12,19 +12,19 @@
     }
 
     input{
-      @apply rounded-md shadow-inner h-20 w-96 text-center;
+      @apply rounded-md shadow-inner h-10 w-52 text-center;
     }
 
     input[type=checkbox]{
-      @apply h-12 cursor-pointer;
+      @apply h-6;
     }
 
     input[type=submit]{
-      @apply cursor-pointer transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
+      @apply transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
     }
 
     input[type=submit], input[type=checkbox]{
-      @apply shadow-none;
+      @apply cursor-pointer shadow-none;
     }
 
     .error{

@@ -5,14 +5,11 @@ html, body {
 }
 
 html {
-  // Makes 1rem === 10px //
-  font-size: 62.5%;
   @apply h-screen w-screen;
 }
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.6rem;
   @apply h-full w-full;
 }
 

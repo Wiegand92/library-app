@@ -4,11 +4,13 @@ header, .footer{
   @apply grid grid-cols-2 content-center;
 
   h1{
-    @apply text-6xl text-tan text-right;
+    @apply text-3xl text-tan text-right;
+    @apply lg:text-5xl xl:text-6xl;
   }
 
   button{
-    @apply bg-tan text-black h-14 p-2 rounded-sm w-44;
+    @apply mt-2;
+    @apply bg-tan text-black h-10 p-2 rounded-sm w-40;
     @apply cursor-pointer transition-all transform  hover:bg-gray hover:scale-90;
   }
 }

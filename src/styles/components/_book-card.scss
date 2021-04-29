@@ -1,7 +1,10 @@
-.book-card{
+@use '../utils/scrollbar';
 
+@include scrollbar.scrollbar(book-card, rgba(207, 219, 213, 1));
+
+.book-card{
   // Sizing //
-  @apply h-96 w-80 rounded-md ;
+  @apply h-72 w-60 rounded-md ;
 
   // Spacing //
   @apply m-2 p-8 flex flex-col mx-auto text-center;
@@ -16,12 +19,12 @@
 
   h2{
     flex-basis: 10%;
-    @apply text-4xl  underline;
+    @apply text-2xl  underline;
   }
 
   h3{
     flex-basis: 10%;
-    @apply text-2xl italic;
+    @apply text-xl italic;
   }
 
   p{
