@@ -9,11 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'gray': '#cfdbd5',
-        'tan': '#e8eddf',
-        'yellow': '#f5cb5c',
-        'black': '#242423',
-        'dark-gray': '#333533'
+        'eerie-black': '#201e1f',
+        'red-orange': '#ff4000',
+        'light-salmon': '#faaa8d',
+        'antique-white': '#feefdd',
+        'pacific-blue': '#50b2c0',
+        'morning-blue': '#8ab0ab',
+        'glaucous': '#5688c7',
       }
     },
   },

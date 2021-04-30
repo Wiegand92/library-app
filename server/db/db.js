@@ -11,7 +11,8 @@ const bookSchema = new mongoose.Schema({
   title: String,
   author: String,
   pages: Number,
-  read: Boolean
+  read: Boolean,
+  userID: String
 });
 
 const userSchema = new mongoose.Schema({

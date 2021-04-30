@@ -40,7 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 app.post('/authenticate', 
   passport.authenticate('local'),
   function (req, res) {
-    res.status(200).send()
+    res.status(200).send({userID: req.user._id})
   }
 );
 
@@ -51,7 +51,7 @@ app.get('/logout', (req, res) => {
 })
 
 // Add User //
-app.post('/new-user', async (req, res) => {
+app.post('/new-user', async (req, res, next) => {
   const { username, password } = req.body;
 
   User.register({username}, password, function(err, user){
@@ -59,19 +59,19 @@ app.post('/new-user', async (req, res) => {
       console.error(err);
       res.status(400).send()
     } else {
-      passport.authenticate("local", {
-        failureFlash: true
-      });
-      res.status(200).send();
+      next()
     }
   })
-
-});
+}, passport.authenticate("local", {
+  failureFlash: true
+}),
+function (req, res) {
+  res.status(200).send({userID: req.user._id})
+}
+);
 
 // Get Library //
 app.get('/library', async (req, res) => {
-
-  if(req.isAuthenticated()) console.log(req.user);
 
   await Library.find({})
   .then(data => res.send(data))
@@ -84,8 +84,8 @@ app.post('/library/:bookID', async (req, res) => {
   if(!req.isAuthenticated()){
     return res.status(403).send()
   }
-  const {author, title, pages, read} = req.body;
-  const updates = {author, title, pages, read};
+  const {author, title, pages, read, userID} = req.body;
+  const updates = {author, title, pages, read, userID};
 
   await Library.findByIdAndUpdate(req.params.bookID, updates)
   .then(() => res.status(200).send())
@@ -96,13 +96,14 @@ app.post('/library/:bookID', async (req, res) => {
 app.post('/library', async (req, res) => {
 
   if(req.isAuthenticated()){
-    const { author, title, pages, read } = req.body;
+    const { author, title, pages, read, userID } = req.body;
 
     const newBook = {
       author,
       title,
       pages,
-      read
+      read,
+      userID
     };
 
     const book = new Library(newBook);

@@ -1,9 +1,9 @@
 .app{
-  @apply h-screen w-screen bg-tan;
+  @apply h-screen w-screen bg-antique-white;
   @apply flex flex-col content-between;
 
   input {
-    @apply bg-gray text-black w-80 h-10 mt-5;
+    @apply bg-light-salmon text-eerie-black w-80 h-10 mt-5;
   }
 
   header{
@@ -15,6 +15,7 @@
     @apply grid place-items-center grid-cols-1;
     /* Responsive Grids */
     @apply sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+    @apply shadow-inner;
     overflow-x: hidden;
     overflow-y: auto;
     flex-basis: 100%;

@@ -10,6 +10,8 @@ const App = () => {
   // Holds the book data from database //
   const [library, setLibrary] = useState([]);
 
+  const [bookView, setBookView] = useState('all');
+
   // Will conditionally render features available to registered users //
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -20,6 +22,9 @@ const App = () => {
   const logOut = useCallback(() => {
     setLoggedIn(false)
   });
+
+  // Holds user id to submit books on a by user basis //
+  const [userID, setUserID] = useState('');
 
   // Will conditionally render the login form //
   const [loginForm, setLoginForm] = useState(false);
@@ -49,7 +54,7 @@ const App = () => {
     setBookForm(false)
   });
 
-  useEffect(() => { if(book._id) showBook() }, [book])
+  useEffect(() => { if(book._id) showBook() }, [book]);
 
   // Holds the logic to request books from database //
   const refreshLibrary = useCallback( async () => {
@@ -66,18 +71,28 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header showLogin={showLogin} logOut={logOut} loggedIn={loggedIn}/>
+      <Header 
+        showLogin={showLogin} 
+        logOut={logOut} 
+        loggedIn={loggedIn}
+        bookView={bookView}
+        setBookView={setBookView}
+      />
 
       <div className="books">
-        {library.map(book =>
-          <BookCard
+        {library.map(book =>{
+          const Book = <BookCard
             book={book}
             refreshLibrary={refreshLibrary}
             key={book._id}
             loggedIn={loggedIn}
             passBook={passBook}
             showBook={showBook}
+            userID={userID}
           />
+
+          return bookView === 'all' ? Book : book.userID === userID && Book
+        }
         )}
       </div>
 
@@ -86,6 +101,7 @@ const App = () => {
         <LoginForm 
           logIn={logIn} 
           hideLogin={hideLogin}
+          setUserID={setUserID}
         />
       }
 
@@ -96,6 +112,7 @@ const App = () => {
           hideBook={hideBook}
           setBook={setBook}
           book={!!book._id ? book : ''}
+          userID={userID}
         />
       }
 

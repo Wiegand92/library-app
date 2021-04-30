@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const BookForm = ({refreshLibrary, hideBook, setBook, book}) => {
+const BookForm = ({refreshLibrary, hideBook, setBook, book, userID}) => {
 
   const [formAuthor, setFormAuthor] = useState('');
   const [formPages, setFormPages] = useState(0);
@@ -35,7 +35,8 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book}) => {
       author,
       title,
       pages,
-      read
+      read,
+      userID
     };
 
     if(!author || !title || !pages){
@@ -127,4 +128,4 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book}) => {
   )
 }
 
-export default BookForm
+export default BookForm;

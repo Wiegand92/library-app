@@ -10,7 +10,7 @@
   @apply m-2 p-8 flex flex-col mx-auto text-center;
 
   // Colors //
-  @apply bg-dark-gray text-tan;
+  @apply bg-morning-blue text-eerie-black shadow-2xl;
 
   @apply transform transition-transform cursor-pointer;
   @apply hover:scale-110;
@@ -34,7 +34,7 @@
 
   button{
     flex-basis: 10%;
-    @apply transition-colors w-40 mt-4 rounded-sm bg-gray text-black mx-auto;
-    @apply hover:bg-red-700;
+    @apply transition-colors w-40 mt-4 rounded-sm bg-light-salmon text-eerie-black mx-auto;
+    @apply hover:bg-red-orange;
   }
 }

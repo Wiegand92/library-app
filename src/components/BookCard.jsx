@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookCard = ({book, passBook, refreshLibrary, loggedIn}) => {
+const BookCard = ({book, passBook, refreshLibrary, loggedIn, userID}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ const BookCard = ({book, passBook, refreshLibrary, loggedIn}) => {
   };
 
   const handleClick = e => {
-    if(loggedIn && e.target.className !== 'delete'){
+    if(loggedIn && book.userID === userID && e.target.className !== 'delete'){
       passBook(book)
     }
   };
@@ -41,7 +41,7 @@ const BookCard = ({book, passBook, refreshLibrary, loggedIn}) => {
         Pages: {book.pages} <br/>
         {book.read? 'You have read this book.': 'You have not read this book'}
       </p>
-      {loggedIn && <button
+      {loggedIn && book.userID === userID && <button
         onClick={handleDelete}
         className='delete'
       >Delete Book</button>}

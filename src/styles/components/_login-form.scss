@@ -1,27 +1,45 @@
 .log-in{
   @apply fixed top-0 left-0 w-screen h-screen;
   @apply flex place-items-center place-content-center;
-  @apply bg-dark-gray bg-opacity-50;
-
-  form {
-    @apply flex flex-col;
-    @apply bg-tan p-20;
-
-    input{
-      @apply rounded-md shadow-inner m-0 h-10 w-44 text-center;
+  @apply bg-eerie-black bg-opacity-50;
+  
+  .form-wrapper{
+    @apply bg-pacific-blue rounded-lg flex flex-col;
+    @apply p-10 pb-14;
+    @apply md:p-28 md:pb-32 md:mb-60;
+  
+    button{
+      @apply mt-4 place-self-center;
+      @apply bg-eerie-black text-antique-white h-10 p-2 rounded-md w-60;
+      @apply cursor-pointer transition-all transform  hover:bg-glaucous hover:text-eerie-black hover:scale-90;
     }
+    
+    form {
+      @apply flex flex-col content-start;
+      
+      input{
+        @apply transition-all rounded-md bg-morning-blue shadow-inner m-0 h-10 w-60 text-center;
+        &:focus{
+          @apply outline-none border-glaucous border-solid border-2;
+        }
+      }
+      
+      label{
+        @apply mt-5 text-center;
+      }
 
-    label{
-      @apply mt-5 text-center;
-    }
-
-    input[type=submit]{
-      @apply shadow-none mt-5;
-      @apply cursor-pointer transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
-    }
-
-    .error{
-      @apply border border-red-500;
+      label:first-of-type{
+        @apply mt-0;
+      }
+      
+      input[type=submit]{
+        @apply shadow-none mt-5 bg-glaucous;
+        @apply cursor-pointer transition-all transform  hover:bg-eerie-black hover:text-antique-white hover:scale-90;
+      }
+      
+      .error{
+        @apply border border-red-orange;
+      }
     }
   }
 }

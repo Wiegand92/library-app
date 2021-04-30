@@ -5,7 +5,7 @@
 
   form {
     @apply flex flex-col;
-    @apply bg-tan p-20 rounded-md;
+    @apply bg-antique-white p-20 rounded-md;
 
     label{
       @apply mt-4;
@@ -20,7 +20,7 @@
     }
 
     input[type=submit]{
-      @apply transition-all transform  hover:bg-dark-gray hover:text-white hover:scale-90;
+      @apply transition-all transform  hover:bg-eerie-black hover:text-antique-white hover:scale-90;
     }
 
     input[type=submit], input[type=checkbox]{
@@ -28,7 +28,7 @@
     }
 
     .error{
-      @apply border-red-500 border outline-none;
+      @apply border-red-orange border outline-none;
     }
   }
 }

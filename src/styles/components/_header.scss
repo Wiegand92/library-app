@@ -1,17 +1,30 @@
 header, .footer{
   flex-basis: 10%;
-  @apply h-28 px-8 bg-dark-gray;
-  @apply grid grid-cols-2 content-center;
+  @apply h-28 px-8 bg-morning-blue;
+  @apply grid grid-cols-3;
 
   h1{
-    @apply text-3xl text-tan text-right;
+    @apply text-2xl text-antique-white text-right col-start-3;
     @apply lg:text-5xl xl:text-6xl;
+    @apply self-start md:self-center;
+    text-shadow: .1rem .1rem black;
   }
 
+  select{
+    @apply bg-light-salmon w-44 h-10 place-self-center pl-12 rounded-md rounded-b-none self-end;
+    @apply cursor-pointer;
+    &:focus{
+      @apply outline-none border-glaucous border-2 border-b-0 border-solid;
+    }
+    .selected{
+      @apply bg-morning-blue;
+    }
+  }
+  
   button{
-    @apply mt-2;
-    @apply bg-tan text-black h-10 p-2 rounded-sm w-40;
-    @apply cursor-pointer transition-all transform  hover:bg-gray hover:scale-90;
+    @apply mt-2 self-start md:place-self-center;
+    @apply bg-glaucous text-eerie-black shadow-xl h-10 p-2 rounded-md w-40;
+    @apply cursor-pointer transition-all transform  hover:bg-pacific-blue hover:scale-90;
   }
 }
 

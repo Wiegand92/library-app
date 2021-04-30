@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const LoginForm = ({logIn, hideLogin}) => {
+const LoginForm = ({logIn, hideLogin, setUserID}) => {
 
   const [error, setError] = useState([]);
   const [formUsername, setFormUsername] = useState('');
@@ -18,7 +18,10 @@ const LoginForm = ({logIn, hideLogin}) => {
       return;
     }
 
-    await fetch('/authenticate', {
+    // Check if user is attempting to sign up, set route accordingly //
+    const route = e.target.className === 'sign-up' ? '/new-user' : '/authenticate';
+
+    await fetch(route, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -30,8 +33,12 @@ const LoginForm = ({logIn, hideLogin}) => {
     })
     .then(response => {
       if(response.status === 200){
-        logIn()
+        return response.json()
       }
+    })
+    .then(({userID}) => {
+      setUserID(userID);
+      logIn();
     })
     .catch(err => console.error(err));
   }
@@ -63,13 +70,18 @@ const LoginForm = ({logIn, hideLogin}) => {
   
   return (
     <div className="log-in" onClick={handleDivClick}>
-      <form onSubmit={handleSubmit} >
-        <label htmlFor="username">Username:</label>
-        <input type="text" value={formUsername} onChange={e => handleChange(e, 'username')} className={handleNull('username')} name="username" />
-        <label htmlFor="password">Password:</label>
-        <input type="password" value={formPassword} onChange={e => handleChange(e, 'password')} className={handleNull('password')} name="password" />
-        <input type="submit" value="Login"/>
-      </form>
+
+      <div className="form-wrapper">
+        <form onSubmit={handleSubmit} >
+          <label htmlFor="username">Username:</label>
+          <input type="text" value={formUsername} onChange={e => handleChange(e, 'username')} className={handleNull('username')} name="username" />
+          <label htmlFor="password">Password:</label>
+          <input type="password" value={formPassword} onChange={e => handleChange(e, 'password')} className={handleNull('password')} name="password" />
+          <input type="submit" value="Login"/>
+        </form>
+        <button className="sign-up" onClick={handleSubmit}>Sign Up</button>
+      </div>
+
     </div>
   );
 
