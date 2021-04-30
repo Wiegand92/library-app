@@ -1,11 +1,15 @@
 .book-form{
   @apply fixed top-0 left-0 w-screen h-screen;
   @apply flex place-items-center place-content-center text-center;
-  @apply bg-dark-gray bg-opacity-50;
+  @apply bg-eerie-black bg-opacity-50;
+  z-index: 5;
 
   form {
-    @apply flex flex-col;
-    @apply bg-antique-white p-20 rounded-md;
+
+    @apply h-3/4 w-3/4 p-0;
+    @apply md:h-auto md:w-auto md:p-20;
+    @apply flex flex-col items-center;
+    @apply bg-antique-white rounded-lg;
 
     label{
       @apply mt-4;
