@@ -1,0 +1,23 @@
+{
+  "books": [
+    {
+      "id": "hash",
+      "author": "string",
+      "title": "Breakfast of Champions",
+      "pages": "read",
+      "userID": "hash"
+    }
+  ],
+  "bookEdit": {
+    "id": "hash",
+    "author": "string",
+    "title": "Breakfast of Champions",
+    "pages": "read",
+    "userID": "hash"
+  },
+  "loggedIn": false,
+  "user": {
+    "username": "string",
+    "id": "string"
+  }
+}
