@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import {connect} from 'react-redux';
 
-const BookForm = ({refreshLibrary, hideBook, setBook, book, userID}) => {
+import {loadBooks} from '../store/books/actions';
+
+const BookForm = ({loadBooks, hideBook, setBook, book, userID}) => {
 
   const [formAuthor, setFormAuthor] = useState('');
   const [formPages, setFormPages] = useState(0);
@@ -56,7 +59,7 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book, userID}) => {
         },
         body: JSON.stringify(newBook)
       })
-      .then(() => refreshLibrary())
+      .then(() => loadBooks())
       .then(() => hideBook())
       .catch(err => console.error(err));
 
@@ -69,7 +72,7 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book, userID}) => {
         },
         body: JSON.stringify(newBook)
       })
-      .then(() => refreshLibrary())
+      .then(() => loadBooks())
       .then(() => hideBook())
       .catch(err => console.error(err));
 
@@ -128,4 +131,8 @@ const BookForm = ({refreshLibrary, hideBook, setBook, book, userID}) => {
   )
 }
 
-export default BookForm;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {loadBooks};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookForm);

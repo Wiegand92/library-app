@@ -1,14 +1,14 @@
 import React, {useEffect, useState, useCallback} from 'react';
+import {connect} from 'react-redux';
+
+import {loadBooks} from '../store/books/actions';
 
 import BookForm from './BookForm';
 import BookCard from './BookCard';
 import LoginForm from './LoginForm';
 import Header from './Header';
 
-const App = () => {
-
-  // Holds the book data from database //
-  const [library, setLibrary] = useState([]);
+const App = ({books, loadBooks}) => {
 
   const [bookView, setBookView] = useState('all');
 
@@ -56,18 +56,9 @@ const App = () => {
 
   useEffect(() => { if(book._id) showBook() }, [book]);
 
-  // Holds the logic to request books from database //
-  const refreshLibrary = useCallback( async () => {
-    const books = [];
-    await fetch('/library')
-    .then(response => response.json())
-    .then(data => books.push(...data))
-    .then(() => {setLibrary(books)})
-    .catch(err => console.error(err));
-  });
 
   // Request books on initial render //
-  useEffect( () => refreshLibrary(), []);
+  useEffect( () => {loadBooks(); console.log('i did it?')}, []);
 
   return (
     <div className="app">
@@ -80,10 +71,9 @@ const App = () => {
       />
 
       <div className="books">
-        {library.map(book =>{
+        {books.map(book =>{
           const Book = <BookCard
             book={book}
-            refreshLibrary={refreshLibrary}
             key={book._id}
             loggedIn={loggedIn}
             passBook={passBook}
@@ -108,7 +98,6 @@ const App = () => {
       { // Show book form if logged in, and requested //
         loggedIn && bookForm &&
         <BookForm 
-          refreshLibrary={refreshLibrary} 
           hideBook={hideBook}
           setBook={setBook}
           book={!!book._id ? book : ''}
@@ -126,4 +115,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => ({
+  books: state.books.books
+});
+
+const mapDispatchToProps = {loadBooks}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

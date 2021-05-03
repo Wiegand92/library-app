@@ -1,4 +1,13 @@
-import {createStore} from 'redux';
-import rootReducer from './reducers/renducer';
+import {applyMiddleware, createStore, compose} from 'redux';
+import thunk from 'redux-thunk';
+import {devToolsEnhancer} from 'redux-devtools-extension';
 
-const store = createStore(rootReducer);
+import bookAPI from './utils/bookAPI'
+import rootReducer from './reducer';
+
+const store = createStore(
+  rootReducer,
+  compose(applyMiddleware(thunk.withExtraArgument(bookAPI)), devToolsEnhancer())  
+);
+
+export default store;

@@ -1,6 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-const BookCard = ({book, passBook, refreshLibrary, loggedIn, userID}) => {
+import {loadBooks} from '../store/books/actions';
+
+const BookCard = ({book, passBook, loadBooks, loggedIn, userID}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const BookCard = ({book, passBook, refreshLibrary, loggedIn, userID}) => {
     })
     .then(response => {
       if(response.status === 200){
-        refreshLibrary()
+        loadBooks()
       } else {
         window.alert('Something went wrong, are you logged in?')
       } })
@@ -49,4 +52,8 @@ const BookCard = ({book, passBook, refreshLibrary, loggedIn, userID}) => {
   )
 };
 
-export default BookCard;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {loadBooks};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookCard);
