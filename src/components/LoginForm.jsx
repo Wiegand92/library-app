@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import {connect} from 'react-redux';
 
-const LoginForm = ({logIn, hideLogin, setUserID}) => {
+import {logIn, hideLoginForm} from '../store/loggedIn/actions'
+
+const LoginForm = ({logIn, hideLoginForm, setUserID}) => {
 
   const [error, setError] = useState([]);
   const [formUsername, setFormUsername] = useState('');
@@ -39,12 +42,13 @@ const LoginForm = ({logIn, hideLogin, setUserID}) => {
     .then(({userID}) => {
       setUserID(userID);
       logIn();
+      hideLoginForm();
     })
     .catch(err => console.error(err));
   }
 
   const handleDivClick = e => {
-    if(e.target.className === 'log-in'){ hideLogin() }
+    if(e.target.className === 'log-in'){ hideLoginForm() }
   }
 
   const handleNull = (inputName) => {
@@ -65,7 +69,7 @@ const LoginForm = ({logIn, hideLogin, setUserID}) => {
         if(error.length > 0) {setError(prev => prev.filter(err => err !== 'password'))};
         setFormPassword(change);
         break;
-    }
+    };
   };
   
   return (
@@ -86,5 +90,7 @@ const LoginForm = ({logIn, hideLogin, setUserID}) => {
   );
 
 };
+const mapStateToProps = () => ({})
+const mapDispatchToProps = {logIn, hideLoginForm}
 
-export default LoginForm
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

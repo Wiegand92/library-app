@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {loadBooks} from '../store/books/actions';
 
-const BookCard = ({book, passBook, loadBooks, loggedIn, userID}) => {
+const BookCard = ({book, passBook, loadBooks, isLogged, userID}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const BookCard = ({book, passBook, loadBooks, loggedIn, userID}) => {
   };
 
   const handleClick = e => {
-    if(loggedIn && book.userID === userID && e.target.className !== 'delete'){
+    if(isLogged && book.userID === userID && e.target.className !== 'delete'){
       passBook(book)
     }
   };
@@ -44,7 +44,7 @@ const BookCard = ({book, passBook, loadBooks, loggedIn, userID}) => {
         Pages: {book.pages} <br/>
         {book.read? 'You have read this book.': 'You have not read this book'}
       </p>
-      {loggedIn && book.userID === userID && <button
+      {isLogged && book.userID === userID && <button
         onClick={handleDelete}
         className='delete'
       >Delete Book</button>}
@@ -52,7 +52,9 @@ const BookCard = ({book, passBook, loadBooks, loggedIn, userID}) => {
   )
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged.isLogged
+});
 
 const mapDispatchToProps = {loadBooks};
 

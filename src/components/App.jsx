@@ -8,20 +8,9 @@ import BookCard from './BookCard';
 import LoginForm from './LoginForm';
 import Header from './Header';
 
-const App = ({books, loadBooks}) => {
+const App = ({books, loadBooks, isLogged, showLoginForm}) => {
 
   const [bookView, setBookView] = useState('all');
-
-  // Will conditionally render features available to registered users //
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const logIn = useCallback(() => {
-    setLoggedIn(true)
-  });
-
-  const logOut = useCallback(() => {
-    setLoggedIn(false)
-  });
 
   // Holds user id to submit books on a by user basis //
   const [userID, setUserID] = useState('');
@@ -58,14 +47,12 @@ const App = ({books, loadBooks}) => {
 
 
   // Request books on initial render //
-  useEffect( () => {loadBooks(); console.log('i did it?')}, []);
+  useEffect( () => {loadBooks()}, []);
 
   return (
     <div className="app">
       <Header 
-        showLogin={showLogin} 
-        logOut={logOut} 
-        loggedIn={loggedIn}
+        showLogin={showLogin}
         bookView={bookView}
         setBookView={setBookView}
       />
@@ -75,7 +62,6 @@ const App = ({books, loadBooks}) => {
           const Book = <BookCard
             book={book}
             key={book._id}
-            loggedIn={loggedIn}
             passBook={passBook}
             showBook={showBook}
             userID={userID}
@@ -87,16 +73,15 @@ const App = ({books, loadBooks}) => {
       </div>
 
       { // Show login form if not logged in, and requested //
-        !loggedIn && loginForm && 
-        <LoginForm 
-          logIn={logIn} 
+        !isLogged && showLoginForm && 
+        <LoginForm
           hideLogin={hideLogin}
           setUserID={setUserID}
         />
       }
 
       { // Show book form if logged in, and requested //
-        loggedIn && bookForm &&
+        isLogged && bookForm &&
         <BookForm 
           hideBook={hideBook}
           setBook={setBook}
@@ -106,7 +91,7 @@ const App = ({books, loadBooks}) => {
       }
 
       { // Show footer if logged in //
-        loggedIn && 
+        isLogged && 
         <div className="footer">
           <button onClick={showBook}>Add Book</button>
         </div>
@@ -116,7 +101,9 @@ const App = ({books, loadBooks}) => {
 };
 
 const mapStateToProps = state => ({
-  books: state.books.books
+  books: state.books.books,
+  isLogged: state.isLogged.isLogged,
+  showLoginForm: state.isLogged.showLoginForm
 });
 
 const mapDispatchToProps = {loadBooks}
